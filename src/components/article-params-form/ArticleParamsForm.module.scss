@@ -6,7 +6,12 @@
 	overflow: scroll;
 	transform: translate(-616px);
 	transition: transform 0.5s ease;
+
+&_open {
+    transform: translateX(0);
+  }
 }
+
 
 .container_open {
 	transform: translate(0);
