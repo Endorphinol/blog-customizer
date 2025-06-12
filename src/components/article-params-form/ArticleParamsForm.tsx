@@ -24,7 +24,8 @@ export const ArticleParamsForm = ({
 	onApply: (state: ArticleStateType) => void;
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [formState, setFormState] = useState(defaultArticleState);
+	const [formState, setFormState] =
+		useState<ArticleStateType>(defaultArticleState);
 	const asideRef = useRef<HTMLDivElement>(null);
 
 	const handleMouseEvent = () => {
