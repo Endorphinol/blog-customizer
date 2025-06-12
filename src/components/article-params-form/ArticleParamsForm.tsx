@@ -2,8 +2,9 @@ import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 import { Text } from 'src/ui/text';
 import { Select } from 'src/ui/select';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Separator } from 'src/ui/separator';
+import { useOverlayClick } from 'src/ui/article-params-form/hooks/useOverlayClick'
 import { RadioGroup } from 'src/ui/radio-group';
 import {
 	fontSizeOptions,
@@ -25,6 +26,7 @@ export const ArticleParamsForm = ({
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [formState, setFormState] = useState(defaultArticleState);
+	const asideRef = useRef<HTMLDivElement>(null);
 
 	const handleMouseEvent = () => {
 		setIsOpen((prev) => !prev);
@@ -40,11 +42,16 @@ export const ArticleParamsForm = ({
 		onApply(defaultArticleState);
 	};
 
+	useOverlayClick(asideRef, () => {
+		if (isOpen) setIsOpen(false);
+	});
+
 	return (
 		<>
 			<ArrowButton isOpen={isOpen} onClick={handleMouseEvent} />
 			{isOpen && (
 				<aside
+					ref={asideRef}
 					className={clsx(styles.container, {
 						[styles.container_open]: isOpen,
 					})}
