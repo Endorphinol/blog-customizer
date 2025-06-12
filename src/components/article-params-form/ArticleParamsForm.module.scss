@@ -1,21 +1,19 @@
 .container {
 	position: fixed;
-	left: 0;
+	left: -616px;
 	width: 616px;
 	height: 100%;
 	overflow: scroll;
-	transform: translateX(100%);
+	transform: translateX(0);
 	transition: transform 0.3s ease-in-out;
-	opacity: 0;
 
 &_open {
     transform: translateX(0);
-	opacity: 1;
   }
 }
 
 .container_open {
-	transform: translateX(0);
+	transform: translateX(616px);
 }
 
 .form {
