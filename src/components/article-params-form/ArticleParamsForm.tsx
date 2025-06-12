@@ -16,50 +16,29 @@ import {
 import styles from './ArticleParamsForm.module.scss';
 import clsx from 'clsx';
 
-export const ArticleParamsForm = () => {
+export const ArticleParamsForm = ({
+	appliedState,
+	onApply,
+}: {
+	appliedState: typeof defaultArticleState;
+	onApply: (state: typeof defaultArticleState) => void;
+}) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [formState, setFormState] = useState(defaultArticleState);
-	const [appliedState, setAppliedState] = useState(defaultArticleState);
 
 	const handleMouseEvent = () => {
 		setIsOpen((prev) => !prev);
 	};
 
-	const updateCSSVariables = (state) => {
-		document.documentElement.style.setProperty(
-		  '--font-family',
-		  state.fontFamilyOption.value
-		);
-		document.documentElement.style.setProperty(
-		  '--font-size',
-		  state.fontSizeOption.value
-		);
-		document.documentElement.style.setProperty(
-		  '--font-color',
-		  state.fontColor.value
-		);
-		document.documentElement.style.setProperty(
-		  '--container-width',
-		  state.contentWidth.value
-		);
-		document.documentElement.style.setProperty(
-		  '--bg-color',
-		  state.backgroundColor.value
-		);
-	  };
-
-	  const handleApply = () => {
-		setAppliedState(formState);
-		updateCSSVariables(formState);
+	const handleApply = () => {
+		onApply(formState);
 		setIsOpen(false);
-	  };
-	
-	  const handleReset = () => {
+	};
+
+	const handleReset = () => {
 		setFormState(defaultArticleState);
-		updateCSSVariables(defaultArticleState);
-		setAppliedState(defaultArticleState);
-	  };
-	
+		onApply(defaultArticleState);
+	};
 
 	return (
 		<>
@@ -107,7 +86,6 @@ export const ArticleParamsForm = () => {
 								setFormState({ ...formState, fontColor: option })
 							}
 						/>
-
 						<Separator />
 						<Select
 							title='Цвет фона'
