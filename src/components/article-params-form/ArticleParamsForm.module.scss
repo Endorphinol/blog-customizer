@@ -5,11 +5,11 @@
 	height: 100%;
 	overflow: scroll;
 	transform: translateX(0);
-	transition: transform 0.3s ease-in-out;
+	transition: transform 0.5s ease;
 }
 
 .container_open {
-	transform: translateX(616px);
+	transform: translateX(100%);
 }
 
 .form {
@@ -23,7 +23,7 @@
 	padding: 50px 31px;
 	background-color: #ffffff;
 	border-right: 1px solid #000000;
-	gap: 50px
+	gap: 50px;
 }
 
 .bottomContainer {
