@@ -2,7 +2,7 @@ import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 import { Text } from 'src/ui/text';
 import { Select } from 'src/ui/select';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Separator } from 'src/ui/separator';
 import { useOverlayClick } from 'src/ui/article-params-form/hooks/useOverlayClick';
 import { RadioGroup } from 'src/ui/radio-group';
@@ -27,6 +27,7 @@ export const ArticleParamsForm = ({
 	const [formState, setFormState] =
 		useState<ArticleStateType>(defaultArticleState);
 	const asideRef = useRef<HTMLDivElement>(null);
+	const handleClose = useCallback(() => setIsOpen(false), []);
 
 	const handleMouseEvent = () => {
 		setIsOpen((prev) => {
@@ -48,7 +49,7 @@ export const ArticleParamsForm = ({
 		onApply(defaultArticleState);
 	};
 
-	useOverlayClick(asideRef, () => setIsOpen(false));
+	useOverlayClick(asideRef, handleClose);
 
 	return (
 		<>
